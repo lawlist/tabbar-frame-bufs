@@ -10,13 +10,12 @@ The function `tabbar-add-tab` has been modified so as to alphabetize the tabs/bu
 
 The function `tabbar-line-tab` has been modified so as to provide four (4) different faces depending upon the situation.  If the tab/buffer is associated with the frame and IS selected, then use `tabbar-selected-associated` face.  If the tab/buffer is associated with the frame and NOT selected, then use `tabbar-unselected-associated` face.  If the tab/buffer is NOT associated with the frame and IS selected, then use `tabbar-selected-unassociated` face.  If the tab/buffer is NOT associated with the frame and is NOT selected, then use `tabbar-unselected-unassociated` face.
 
-    ;; Download tabbar version 2.0.1 by David Ponce:
-    ;;   https://marmalade-repo.org/packages/tabbar
-    ;; or use package-install for marmalade repositories.
+    ;;;  Download tabbar.el version 2.2 by David Ponce:
 
-    ;; Place tabbar-2.0.1.el in the `load-path` -- it is okay to rename it to tabbar.el
-    ;; or add the directory (where `tabbar.el` resides) to the `load-path`.
-    ;; EXAMPLE:  (setq load-path (append '("/Users/HOME/.emacs.d/lisp/") load-path))
+    ;;;  Place tabbar.el in the `load-path` or add the directory (where `tabbar.el`
+    ;;;  resides) to the `load-path`.
+    ;;;
+    ;;;  EXAMPLE:  (setq load-path (append '("/Users/HOME/.emacs.d/lisp/") load-path))
 
     (require 'tabbar)
 
@@ -37,7 +36,7 @@ The function `tabbar-line-tab` has been modified so as to provide four (4) diffe
 
     (setq tabbar-buffer-groups-function 'my-buffer-groups) ;; 'tabbar-buffer-groups
 
-    ;; redefine tabbar-add-tab so that it alphabetizes / sorts the tabs
+    ;;;  redefine tabbar-add-tab so that it alphabetizes / sorts the tabs
     (defun tabbar-add-tab (tabset object &optional append)
       "Add to TABSET a tab with value OBJECT if there isn't one there yet.
     If the tab is added, it is added at the beginning of the tab list,
@@ -60,8 +59,8 @@ The function `tabbar-line-tab` has been modified so as to provide four (4) diffe
             (tabbar-set-template tabset nil)
             (set tabset new-tabset)))))
 
-    ;; AUTHOR:  Alp Aker -- https://github.com/alpaker/Frame-Bufs
-    ;; @lawlist extracted/revised the function(ality) from said library.
+    ;;;  AUTHOR:  Alp Aker -- https://github.com/alpaker/Frame-Bufs
+    ;;;  @lawlist extracted/revised the function(ality) from said library.
     (defun my-buffer-list (frame)
       ;; Remove dead buffers.
       (set-frame-parameter frame 'frame-bufs-buffer-list
@@ -77,8 +76,8 @@ The function `tabbar-line-tab` has been modified so as to provide four (4) diffe
         (when (memq current-buffer (my-buffer-list frame))
           (my-remove-buffer current-buffer frame))))
 
-    ;; AUTHOR:  Alp Aker -- https://github.com/alpaker/Frame-Bufs
-    ;; @lawlist extracted/revised the function(ality) from said library.
+    ;;;  AUTHOR:  Alp Aker -- https://github.com/alpaker/Frame-Bufs
+    ;;;  @lawlist extracted/revised the function(ality) from said library.
     (defun my-add-buffer (&optional buf frame)
     "Add BUF to FRAME's associated-buffer list if not already present."
     (interactive)
@@ -93,8 +92,8 @@ The function `tabbar-line-tab` has been modified so as to provide four (4) diffe
           (add-hook 'kill-buffer-hook 'my-kill-buffer-fn 'append 'local))
         (when tabbar-mode (tabbar-display-update))))
 
-    ;; AUTHOR:  Alp Aker -- https://github.com/alpaker/Frame-Bufs
-    ;; @lawlist extracted/revised the function(ality) from said library.
+    ;;;  AUTHOR:  Alp Aker -- https://github.com/alpaker/Frame-Bufs
+    ;;;  @lawlist extracted/revised the function(ality) from said library.
     (defun my-remove-buffer (&optional buf frame)
     "Remove BUF from FRAME's associated-buffer list."
     (interactive)
@@ -104,8 +103,8 @@ The function `tabbar-line-tab` has been modified so as to provide four (4) diffe
           (delq buf (frame-parameter frame 'frame-bufs-buffer-list)))
         (when tabbar-mode (tabbar-display-update))))
 
-    ;; AUTHOR:  Alp Aker -- https://github.com/alpaker/Frame-Bufs
-    ;; @lawlist extracted/revised the function(ality) from said library.
+    ;;;  AUTHOR:  Alp Aker -- https://github.com/alpaker/Frame-Bufs
+    ;;;  @lawlist extracted/revised the function(ality) from said library.
     (defun my-buffer-list-reset ()
         "Wipe the entire slate clean for the selected frame."
       (interactive)

@@ -10,6 +10,8 @@ The function `tabbar-add-tab` has been modified so as to alphabetize the tabs/bu
 
 The function `tabbar-line-tab` has been modified so as to provide four (4) different faces depending upon the situation.  If the tab/buffer is associated with the frame and IS selected, then use `tabbar-selected-associated` face.  If the tab/buffer is associated with the frame and NOT selected, then use `tabbar-unselected-associated` face.  If the tab/buffer is NOT associated with the frame and IS selected, then use `tabbar-selected-unassociated` face.  If the tab/buffer is NOT associated with the frame and is NOT selected, then use `tabbar-unselected-unassociated` face.
 
+VIDEO:  https://youtu.be/LwSG8THmVJE
+
     ;;;  Download tabbar.el version 2.2 by David Ponce:
 
     ;;;  Place tabbar.el in the `load-path` or add the directory (where `tabbar.el`

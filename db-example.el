@@ -271,7 +271,9 @@ of `org-mode' where it attempts to recenter a window that is not visible."
     (set-frame-height (selected-frame) 20)
     (set-frame-width (selected-frame) 80)
     (set-frame-position (selected-frame) 400 400)
-    (message "\*NOT\* buffer-filename.  \*IS\* defined by db-main-buffer.")))
+    (message "\*NOT\* buffer-filename.  \*IS\* defined by db-main-buffer.")
+
+    (message "`db-example':  The function has finished!")))
 
 (defface frame-number-face
   '((t (:background "Black" :foreground "red" )))

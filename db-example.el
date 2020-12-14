@@ -64,7 +64,7 @@
 (defun db-pop-up-frame (buffer alist)
   (cond
     ;; condition # 1 -- either file-visiting or no-file buffers
-    ((db-regexp-match-p db-org-buffer (buffer-name buffer))
+    ((db-regexp-match-p db-org-buffer (or (buffer-file-name buffer) (buffer-name buffer)))
       (if (db-get-frame--drew-adams "ORG")
         (select-frame-set-input-focus (db-get-frame--drew-adams "ORG"))
         ;; If unnamed frame exists, then take control of it.
@@ -84,7 +84,7 @@
        (set-window-buffer (get-largest-window) buffer))
       (select-window (get-buffer-window buffer)))
     ;; condition # 2 -- either file-visiting or no-file buffers
-    ((db-regexp-match-p db-main-buffer (buffer-name buffer))
+    ((db-regexp-match-p db-main-buffer (or (buffer-file-name buffer) (buffer-name buffer)))
       (if (db-get-frame--drew-adams "MAIN")
         (select-frame-set-input-focus (db-get-frame--drew-adams "MAIN"))
         ;; If unnamed frame exists, then take control of it.
@@ -104,7 +104,7 @@
        (set-window-buffer (get-largest-window) buffer))
       (select-window (get-buffer-window buffer)))
     ;; condition # 3 -- either file-visiting or no-file buffers
-    ((db-regexp-match-p db-system-buffer (buffer-name buffer))
+    ((db-regexp-match-p db-system-buffer (or (buffer-file-name buffer) (buffer-name buffer)))
       (if (db-get-frame--drew-adams "SYSTEM")
         (select-frame-set-input-focus (db-get-frame--drew-adams "SYSTEM"))
         ;; If unnamed frame exists, then take control of it.
@@ -125,16 +125,16 @@
       (select-window (get-buffer-window buffer)))
     ;; condition # 4
     ;; display buffer in the existing frame
-    ((db-regexp-match-p db-special-buffer (buffer-name buffer))
+    ((db-regexp-match-p db-special-buffer (or (buffer-file-name buffer) (buffer-name buffer)))
       (unless (get-buffer-window buffer)
         (set-window-buffer (get-largest-window) buffer))
       (select-window (get-buffer-window buffer)))
     ;; condition # 5
     ;; file-visiting buffers that do NOT match any pre-defined regexp
-    ((and (not (db-regexp-match-p db-org-buffer (buffer-name buffer)))
-          (not (db-regexp-match-p db-main-buffer (buffer-name buffer)))
-          (not (db-regexp-match-p db-system-buffer (buffer-name buffer)))
-          (not (db-regexp-match-p db-special-buffer (buffer-name buffer)))
+    ((and (not (db-regexp-match-p db-org-buffer (or (buffer-file-name buffer) (buffer-name buffer))))
+          (not (db-regexp-match-p db-main-buffer (or (buffer-file-name buffer) (buffer-name buffer))))
+          (not (db-regexp-match-p db-system-buffer (or (buffer-file-name buffer) (buffer-name buffer))))
+          (not (db-regexp-match-p db-special-buffer (or (buffer-file-name buffer) (buffer-name buffer))))
           (buffer-file-name (get-buffer (buffer-name buffer))))
       (if (db-get-frame--drew-adams "MISCELLANEOUS")
         (select-frame-set-input-focus
